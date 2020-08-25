@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
-import { SignUpLink, SignUpForm } from "../SignUp";
+import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
@@ -11,6 +11,7 @@ const SignInPage = () => (
   <div>
     <h1>Sign In</h1>
     <SignInForm />
+    <SignInGoogle />
     <PasswordForgetLink />
     <SignUpLink />
   </div>
@@ -79,7 +80,49 @@ class SignInFormBase extends Component {
   }
 }
 
+class SignInGoogleBase extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { error: null };
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.firebase
+      .doSignInWithGoogle()
+      .then((socialAuthUser) => {
+        return this.props.firebase.user(socialAuthUser.user.uid).set({
+          username: socialAuthUser.user.displayName,
+          email: socialAuthUser.user.email,
+          roles: {},
+        });
+      })
+      .then(() => {
+        this.setState({ error: null });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch((error) => {
+        this.setState({ error });
+      });
+  };
+
+  render() {
+    const { error } = this.state;
+
+    return (
+      <form onSubmit={this.onSubmit}>
+        <button type="submit">Sign In with Google</button>
+
+        {error && <p>{error.message}</p>}
+      </form>
+    );
+  }
+}
+
 const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
 
+const SignInGoogle = compose(withRouter, withFirebase)(SignInGoogleBase);
+
 export default SignInPage;
-export { SignUpForm };
+export { SignInForm, SignInGoogle };
