@@ -6,8 +6,10 @@ import { AuthUserContext } from "../Session";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 
+import styles from "./styles.module.css";
+
 const Navigation = () => (
-  <div>
+  <nav className={styles.navigation}>
     <AuthUserContext.Consumer>
       {(authUser) =>
         authUser ? (
@@ -17,14 +19,11 @@ const Navigation = () => (
         )
       }
     </AuthUserContext.Consumer>
-  </div>
+  </nav>
 );
 
 const NavigationAuth = ({ authUser }) => (
   <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
