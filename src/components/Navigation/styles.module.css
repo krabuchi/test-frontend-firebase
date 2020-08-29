@@ -1,20 +1,43 @@
 .navigation {
+  margin: 0 auto;
   height: 50px;
-  width: 100%;
+  width: calc(100% - 2rem);
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.navigation h1 {
+  color: var(--dark-blue);
+  font-size: 2.5rem;
+  font-family: var(--title-font);
 }
 
 .navigation ul {
   list-style-type: none;
+  width: 100%;
+  max-width: 300px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.navigation ul li {
+.navigation ul li a {
   list-style: none;
+  height: 100%;
 }
 
 .navigation ul li a {
   text-decoration: none;
   color: #111;
+  font-family: var(--main-font);
+  font-size: 1.2rem;
+  transition: all 200ms ease-in;
+}
+
+.navigation a:hover {
+  color: var(--main-blue);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }

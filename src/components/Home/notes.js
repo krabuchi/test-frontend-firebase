@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { withFirebase } from "../Firebase";
 
+import styles from "./styles.module.css";
+
 import NoteList from "./noteList";
 
 class NotesBase extends Component {
@@ -12,7 +14,7 @@ class NotesBase extends Component {
       loading: false,
       notes: [],
       text: "",
-      limit: 5,
+      limit: 10,
     };
   }
 
@@ -75,7 +77,8 @@ class NotesBase extends Component {
   };
 
   onRemoveNote = (uid) => {
-    this.props.firebase.notes(uid).remove();
+    console.log(uid);
+    this.props.firebase.note(uid).remove();
   };
 
   onEditNote = (note, text) => {
@@ -93,16 +96,22 @@ class NotesBase extends Component {
     const { authUser } = this.props;
 
     return (
-      <div>
-        <form onSubmit={(e) => this.onCreateNote(e, authUser)}>
+      <div className={styles.notesPage}>
+        <form
+          className={styles.notesForm}
+          onSubmit={(e) => this.onCreateNote(e, authUser)}
+        >
           <textarea
             type="text"
             value={text}
             onChange={this.onChange}
             rows="5"
-            cols="33"
+            cols="20"
+            placeholder="Start typing here..."
           />
-          <button type="submit">Add</button>
+          <button type="submit" className={styles.addBtn}>
+            Add
+          </button>
         </form>
 
         {loading && <div>Loading ...</div>}
@@ -118,7 +127,11 @@ class NotesBase extends Component {
           <div>There are no notes</div>
         )}
         {!loading && notes && (
-          <button type="button" onClick={this.onNextPage}>
+          <button
+            className={styles.moreBtn}
+            type="button"
+            onClick={this.onNextPage}
+          >
             More
           </button>
         )}

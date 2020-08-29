@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
+import styles from "./styles.module.css";
+
 const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
+  <div className={styles.forgotPasswordPage}>
+    <h1>Forgot Password</h1>
     <PasswordForgetForm />
   </div>
 );
 
 const INITIAL_STATE = {
-  email: "null",
+  email: null,
   error: null,
 };
 
@@ -46,7 +48,7 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === "";
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className={styles.forgotPasswordForm}>
         <input
           name="email"
           value={this.state.email}
@@ -55,7 +57,7 @@ class PasswordForgetFormBase extends Component {
           placeholder="Email Address"
         />
         <button disabled={isInvalid} type="submit">
-          Rest My Password
+          Reset My Password
         </button>
         {error && <p>{error.message}</p>}
       </form>
@@ -65,7 +67,9 @@ class PasswordForgetFormBase extends Component {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password`</Link>
+    <Link to={ROUTES.PASSWORD_FORGET} style={{ color: "#fff" }}>
+      Forgot Password
+    </Link>
   </p>
 );
 

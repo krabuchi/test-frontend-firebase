@@ -10,6 +10,7 @@ import styles from "./styles.module.css";
 
 const Navigation = () => (
   <nav className={styles.navigation}>
+    <h1>Note It!</h1>
     <AuthUserContext.Consumer>
       {(authUser) =>
         authUser ? (
@@ -44,7 +45,11 @@ const NavigationAuth = ({ authUser }) => (
 const NavigationNonAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link to={ROUTES.LANDING}>
+        <span role="img" aria-label="home-emoji">
+          🏠 Home
+        </span>
+      </Link>
     </li>
     <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>

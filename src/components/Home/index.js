@@ -1,8 +1,13 @@
 import React from "react";
 
-import { withAuthorization, AuthUserContext } from "../Session";
+import {
+  withAuthorization,
+  AuthUserContext,
+  withEmailVerification,
+} from "../Session";
 
 import Notes from "./notes";
+import { compose } from "recompose";
 
 const HomePage = () => (
   <AuthUserContext.Consumer>
@@ -12,4 +17,7 @@ const HomePage = () => (
 
 const condition = (authUser) => !!authUser;
 
-export default withAuthorization(condition)(HomePage);
+export default compose(
+  withEmailVerification,
+  withAuthorization(condition)
+)(HomePage);

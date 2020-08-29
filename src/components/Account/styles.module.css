@@ -1,0 +1,21 @@
+.accountPage {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(to top, var(--main-blue), var(--dark-blue));
+}
+
+.accountPage h1 {
+  color: #fff;
+  font-family: var(--main-font);
+  font-size: 3rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+.accountPage span {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}

@@ -1,0 +1,123 @@
+.notesPage {
+  min-height: calc(100vh - 50px - 2em);
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  background-image: linear-gradient(to top, var(--main-blue), var(--dark-blue));
+}
+
+.notesForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.notesForm textarea {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  outline: none;
+}
+
+.addBtn {
+  width: calc(100% - 2em);
+  max-width: 200px;
+  margin: 0.5em auto;
+  font-size: 1.5em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  background-color: var(--dark-blue);
+  color: #fff;
+  transition: all 250ms ease-in-out;
+  box-shadow: 1px 1px 5px #fff;
+}
+
+.notesList {
+  list-style-type: none;
+  width: 100%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 0;
+  margin: 0.5em auto;
+}
+
+.notesList li {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #111;
+  background-color: seashell;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.notesList textarea {
+  height: auto;
+  width: calc(100% - 2em);
+  font-size: 1em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  outline: none;
+}
+
+.moreBtn {
+  width: calc(100% - 2em);
+  max-width: 200px;
+  margin: 0.5em auto;
+  font-size: 1.5em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  background-color: var(--dark-blue);
+  color: #fff;
+  transition: all 250ms ease-in-out;
+  box-shadow: 1px 1px 5px var(--dark-blue);
+}
+
+.btnContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btnContainer button {
+  width: calc(100% - 2em);
+  max-width: 100px;
+  margin: 0.5em;
+  font-size: 1em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  background-color: var(--dark-blue);
+  color: #fff;
+  transition: all 250ms ease-in-out;
+  box-shadow: 1px 1px 5px var(--dark-blue);
+}
+
+button:hover {
+  box-shadow: 2px 3px 4px var(--dark-blue);
+  cursor: pointer;
+  background-color: var(--main-blue);
+}
+
+.noteText {
+  padding: 0.5em;
+  min-height: 100px;
+}

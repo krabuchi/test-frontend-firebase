@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./styles.module.css";
 
 export default class NoteItem extends Component {
   constructor(props) {
@@ -31,23 +32,22 @@ export default class NoteItem extends Component {
     const { editMode, editText } = this.state;
 
     return (
-      <li>
+      <li className={styles.noteItem}>
         {editMode ? (
-          <input
+          <textarea
             type="text"
             value={editText}
             onChange={this.onChangeEditText}
+            rows="5"
+            cols="20"
           />
         ) : (
-          <span>
-            {note.text}
-            {note.editedAt && <span>(Edited)</span>}
-          </span>
+          <span className={styles.noteText}>{note.text}</span>
         )}
         {authUser.uid === note.userId && (
-          <span>
+          <span className={styles.btnContainer}>
             {editMode ? (
-              <span>
+              <span className={styles.btnContainer}>
                 <button onClick={this.onSaveEditText}>Save</button>
                 <button onClick={this.onToggleEditMode}>Reset</button>
               </span>

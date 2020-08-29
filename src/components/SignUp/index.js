@@ -5,8 +5,10 @@ import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 
+import styles from "./styles.module.css";
+
 const SignUpPage = () => (
-  <div>
+  <div className={styles.signUpPage}>
     <h1>SignUp</h1>
     <SignUpForm />
   </div>
@@ -48,6 +50,9 @@ class SignUpFormBase extends Component {
         });
       })
       .then(() => {
+        return this.props.firebase.doSendEmailVerification();
+      })
+      .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
@@ -80,7 +85,7 @@ class SignUpFormBase extends Component {
       username === "";
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className={styles.signUpForm}>
         <input
           name="username"
           value={username}
@@ -110,12 +115,12 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
         />
         <label>
-          Admin:
           <input
             name="isAdmin"
             type="checkbox"
             checked={isAdmin}
             onChange={this.onChangeCheckbox}
+            disabled={true}
           />
         </label>
         <button disabled={isInvalid} type="submit">
@@ -129,8 +134,11 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  <p style={{ color: "#fff" }}>
+    Don't have an account? {""}
+    <Link to={ROUTES.SIGN_UP} style={{ color: "#fff" }}>
+      Sign Up
+    </Link>
   </p>
 );
 

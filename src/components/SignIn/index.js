@@ -7,8 +7,10 @@ import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
+import styles from "./styles.module.css";
+
 const SignInPage = () => (
-  <div>
+  <div className={styles.signInPage}>
     <h1>Sign In</h1>
     <SignInForm />
     <SignInGoogle />
@@ -55,7 +57,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === "" || email === "";
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className={styles.signInForm} onSubmit={this.onSubmit}>
         <input
           name="email"
           value={email}
@@ -111,8 +113,10 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+      <form onSubmit={this.onSubmit} className={styles.signInGoogleForm}>
+        <button type="submit" className={styles.signInGoogleBtn}>
+          Sign In with Google
+        </button>
 
         {error && <p>{error.message}</p>}
       </form>
