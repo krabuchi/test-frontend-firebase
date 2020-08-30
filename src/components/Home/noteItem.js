@@ -49,9 +49,12 @@ export default class NoteItem extends Component {
             cols="20"
           />
         ) : (
-          <span onClick={this.setVisible} className={styles.noteText}>
+          <span className={styles.noteText}>
             <h1>{note.title}</h1>
-            <small className={visible ? styles.notActive : styles.active}>
+            <small
+              onClick={this.setVisible}
+              className={visible ? styles.notActive : styles.active}
+            >
               Click to{" "}
               <span role="img" aria-label="notebook-open">
                 📖
@@ -59,7 +62,10 @@ export default class NoteItem extends Component {
             </small>
             <span className={visible ? styles.active : styles.notActive}>
               <p>{note.text}</p>
-              <small className={visible ? styles.active : styles.notActive}>
+              <small
+                onClick={this.setVisible}
+                className={visible ? styles.active : styles.notActive}
+              >
                 Click to{" "}
                 <span role="img" aria-label="notebook-close">
                   📓
