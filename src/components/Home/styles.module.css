@@ -15,6 +15,18 @@
   width: 100%;
 }
 
+.notesForm input {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1em;
+  padding: 0.3em 0.8em;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  outline: none;
+  margin: 0.5em;
+}
+
 .notesForm textarea {
   width: 100%;
   max-width: 500px;
@@ -38,31 +50,30 @@
   background-color: var(--dark-blue);
   color: #fff;
   transition: all 250ms ease-in-out;
-  box-shadow: 1px 1px 5px #fff;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
 .notesList {
   list-style-type: none;
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 1rem;
+  grid-gap: 1em;
   padding: 0;
   margin: 0.5em auto;
 }
 
 .notesList li {
-  position: relative;
   list-style: none;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   color: #111;
-  background-color: seashell;
-  padding: 0.5em;
+  background-color: var(--main-white);
+  padding: 0 0.5em;
   border-radius: 5px;
+  margin: 0 0.5em;
 }
 
 .notesList textarea {
@@ -88,7 +99,7 @@
   background-color: var(--dark-blue);
   color: #fff;
   transition: all 250ms ease-in-out;
-  box-shadow: 1px 1px 5px var(--dark-blue);
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
 .btnContainer {
@@ -119,5 +130,29 @@ button:hover {
 
 .noteText {
   padding: 0.5em;
-  min-height: 100px;
+  height: auto;
+}
+
+.noteText h1 {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.active {
+  display: block;
+  transition: all 250ms ease-in-out;
+}
+
+.notActive {
+  display: none;
+  transition: all 250ms ease-in-out;
+}
+
+.noteText small {
+  color: var(--main-blue);
+  font-weight: 600;
+}
+
+.noteText small:hover {
+  cursor: pointer;
 }

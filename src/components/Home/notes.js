@@ -14,6 +14,7 @@ class NotesBase extends Component {
       loading: false,
       notes: [],
       text: "",
+      title: "",
       limit: 10,
     };
   }
@@ -63,7 +64,7 @@ class NotesBase extends Component {
   }
 
   onChange = (e) => {
-    this.setState({ text: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   onCreateNote = (e, authUser) => {
@@ -71,13 +72,13 @@ class NotesBase extends Component {
     this.props.firebase.notes().push({
       userId: authUser.uid,
       text: this.state.text,
+      title: this.state.title,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
-    this.setState({ text: "" });
+    this.setState({ text: "", title: "" });
   };
 
   onRemoveNote = (uid) => {
-    console.log(uid);
     this.props.firebase.note(uid).remove();
   };
 
@@ -92,7 +93,7 @@ class NotesBase extends Component {
   };
 
   render() {
-    const { text, notes, loading } = this.state;
+    const { text, notes, loading, title } = this.state;
     const { authUser } = this.props;
 
     return (
@@ -101,9 +102,17 @@ class NotesBase extends Component {
           className={styles.notesForm}
           onSubmit={(e) => this.onCreateNote(e, authUser)}
         >
+          <input
+            type="text"
+            onChange={this.onChange}
+            name="title"
+            value={title}
+            placeholder="Title"
+          />
           <textarea
             type="text"
             value={text}
+            name="text"
             onChange={this.onChange}
             rows="5"
             cols="20"

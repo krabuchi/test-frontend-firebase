@@ -8,6 +8,7 @@ export default class NoteItem extends Component {
     this.state = {
       editMode: false,
       editText: this.props.note,
+      visible: false,
     };
   }
 
@@ -27,9 +28,15 @@ export default class NoteItem extends Component {
     this.setState({ editMode: false });
   };
 
+  setVisible = () => {
+    this.setState((state) => ({
+      visible: !state.visible,
+    }));
+  };
+
   render() {
     const { note, onRemoveNote, authUser } = this.props;
-    const { editMode, editText } = this.state;
+    const { editMode, editText, visible } = this.state;
 
     return (
       <li className={styles.noteItem}>
@@ -42,9 +49,26 @@ export default class NoteItem extends Component {
             cols="20"
           />
         ) : (
-          <span className={styles.noteText}>{note.text}</span>
+          <span onClick={this.setVisible} className={styles.noteText}>
+            <h1>{note.title}</h1>
+            <small className={visible ? styles.notActive : styles.active}>
+              Click to{" "}
+              <span role="img" aria-label="notebook-open">
+                📖
+              </span>
+            </small>
+            <span className={visible ? styles.active : styles.notActive}>
+              <p>{note.text}</p>
+              <small className={visible ? styles.active : styles.notActive}>
+                Click to{" "}
+                <span role="img" aria-label="notebook-close">
+                  📓
+                </span>
+              </small>
+            </span>
+          </span>
         )}
-        {authUser.uid === note.userId && (
+        {authUser.uid === note.userId && visible && (
           <span className={styles.btnContainer}>
             {editMode ? (
               <span className={styles.btnContainer}>
